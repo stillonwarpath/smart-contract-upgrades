@@ -1,9 +1,11 @@
-from scripts.helpful_scripts import get_account
-from brownie import network, Box
+from scripts.helpful_scripts import get_account, encode_function_data
+from brownie import network, Box, ProxyAdmin
 
 
 def main():
     account = get_account()
     print(f"Deploying to {network.show_active()}")
     box = Box.deploy({"from": account})
-    print(box.retrieve())
+    proxy_admin = proxyAdmin.deploy({"from": account})
+    # initializer = box.store, 1
+    box_encoded_initializer_function = encode_function_data()
