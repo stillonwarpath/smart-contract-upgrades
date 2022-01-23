@@ -1,4 +1,3 @@
-from scripts.helpful_scripts import get_account, encode_function_data
 from brownie import (
     network,
     Box,
@@ -7,6 +6,7 @@ from brownie import (
     Contract,
     BoxV2,
 )
+from scripts.helpful_scripts import get_account, encode_function_data, upgrade
 
 
 def main():
@@ -28,3 +28,6 @@ def main():
 
     # Upgrade
     box_v2 = BoxV2.deploy({"from": account})
+    upgrade_transaction = upgrade(
+        account, proxy, box_v2.address, proxy_admin_contract=proxy_admin
+    )
