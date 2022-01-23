@@ -31,3 +31,5 @@ def main():
     upgrade_transaction = upgrade(
         account, proxy, box_v2.address, proxy_admin_contract=proxy_admin
     )
+    print("Proxy has been upgraded!")
+    proxy_box = Contract.from_abi("BoxV2", proxy.address, BoxV2.abi)
