@@ -1,5 +1,12 @@
 from scripts.helpful_scripts import get_account, encode_function_data
-from brownie import network, Box, ProxyAdmin, TransparentUpgradeableProxy, Contract
+from brownie import (
+    network,
+    Box,
+    ProxyAdmin,
+    TransparentUpgradeableProxy,
+    Contract,
+    BoxV2,
+)
 
 
 def main():
@@ -18,4 +25,6 @@ def main():
     print(f"Proxy deployed to {proxy}, you can now upgrade to v2!")
     proxy_box = Contract.from_abi("Box", proxy.address, Box.abi)
     proxy_box.store(1, {"from": account})
-    print(proxy_box.retrieve())
+
+    # Upgrade
+    box_v2 = BoxV2.deploy({"from": account})
