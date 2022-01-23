@@ -6,7 +6,7 @@ def main():
     account = get_account()
     print(f"Deploying to {network.show_active()}")
     box = Box.deploy({"from": account})
-    proxy_admin = proxyAdmin.deploy({"from": account})
+    proxy_admin = ProxyAdmin.deploy({"from": account})
     # initializer = box.store, 1
     box_encoded_initializer_function = encode_function_data()
     proxy = TransparentUpgradeableProxy.deploy(
