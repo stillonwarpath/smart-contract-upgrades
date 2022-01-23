@@ -52,3 +52,7 @@ def upgrade(
                 encoded_function_call,
                 {"from": account},
             )
+        else:
+            transaction = proxy_admin_contract.upgrade(
+                proxy.address, new_implementation_address, {"from": account}
+            )
