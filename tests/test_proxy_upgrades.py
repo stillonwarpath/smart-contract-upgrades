@@ -16,7 +16,10 @@ def test_proxy_upgrades():
     proxy_admin = ProxyAdmin.deploy({"from": account})
     box_encoded_initializer_function = encode_function_data()
     proxy = TransparentUpgradeableProxy.deploy(
-        box.address, proxy_admin.address, box_encoded_initializer_function
+        box.address,
+        proxy_admin.address,
+        box_encoded_initializer_function,
+        {"from": account, "gas_limit": 1000000},
     )
 
     # deploy boxV2
